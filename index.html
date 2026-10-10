@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Carreritas Quispe</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- SDK de Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="game.js" defer></script>
+</head>
+<body>
+
+    <header class="topbar">
+        <a class="brand" href="#">
+            <span class="brand-icon">CQ</span>
+            <span>CARRERITAS <strong>QUISPE</strong></span>
+        </a>
+    </header>
+
+    <main class="layout">
+        <section class="game-panel">
+            <div class="canvas-wrap">
+                <!-- Canvas de juego -->
+                <canvas id="gameCanvas" width="480" height="650">
+                    Tu navegador no soporta Canvas.
+                </canvas>
+
+                <!-- HUD Integrado sobre la pantalla de juego -->
+                <div class="ingame-hud" id="inGameHud">
+                    <div class="hud-item">
+                        <span class="hud-label">PTS</span>
+                        <strong id="hudScore">00000</strong>
+                    </div>
+                    <div class="hud-item">
+                        <span class="hud-label">NIVEL</span>
+                        <strong id="hudLevel">01</strong>
+                    </div>
+                </div>
+
+                <!-- Botones flotantes (Música y HUD) -->
+                <div class="top-buttons">
+                    <button id="toggleAudioBtn" class="hud-toggle-btn" aria-label="Musica">🔊</button>
+                    <button id="toggleHudBtn" class="hud-toggle-btn" aria-label="Ocultar/Mostrar información">👁️</button>
+                </div>
+
+                <!-- Capa de Superposición (Overlay) -->
+                <div class="overlay" id="gameOverlay">
+                    <!-- Pedir apodo -->
+                    <div class="overlay-card" id="nameCard">
+                        <div class="overlay-icon">🏎️</div>
+                        <h2>Ingresa tu apodo</h2>
+                        <input type="text" id="usernameInput" placeholder="Ej. Pepitopro" maxlength="15" autocomplete="off">
+                        <button id="saveNameButton" class="primary-button">
+                            JUGAR <span>→</span>
+                        </button>
+                    </div>
+
+                    <!-- Fin de juego / Pausa -->
+                    <div class="overlay-card hidden" id="startCard">
+                        <div class="overlay-icon" id="overlayIcon">🏁</div>
+                        <h2 id="overlayTitle">Carreritas Quispe</h2>
+                        <p id="overlayMessage"></p>
+                        <button id="startButton" class="primary-button">
+                            JUGAR DE NUEVO <span>↻</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Controles táctiles móviles -->
+            <div class="mobile-controls">
+                <button id="leftBtn" aria-label="Izquierda">⬅</button>
+                <button id="upBtn" aria-label="Acelerar">⬆</button>
+                <button id="downBtn" aria-label="Frenar">⬇</button>
+                <button id="rightBtn" aria-label="Derecha">➡</button>
+            </div>
+
+            <div class="controls-row">
+                <div class="key-help">
+                    <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> Moverse | <kbd>P</kbd> Pausa
+                </div>
+            </div>
+
+            <!-- Tabla de posiciones integrada abajo -->
+            <div class="leaderboard-bottom">
+                <h3>🏆 Ranking Global Top 10</h3>
+                <ol id="leaderboardList" class="leaderboard-list">
+                    <li><span>Cargando...</span></li>
+                </ol>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
